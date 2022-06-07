@@ -24,12 +24,12 @@ Pytorch 1.8.0, Cuda 11
 1. Clone this repository:
 
    ```shell
-   git clone https://github.com/jzrita/NTIRE2020_sysu-AIR.git
+   git clone [README.md](https://github.com/wcy-cs/KDFSRNet.git)
    ```
 2. Download our pre-trained model from the links below, unzip the models and place them to `./models`.
 
-    [Click_here_to_download](https://pan.baidu.com/s/1XytyS1XyUidfP8uDeBuN6g)
-    (code: a3mu)
+    [Click_here_to_download]()(available soon)
+    (c)
     
 3. Then run the **following commands** to test the model:
 
@@ -40,5 +40,5 @@ Pytorch 1.8.0, Cuda 11
 ## Result
 1. Download and view our test result.
 
-    [Click_here_to_download](https://pan.baidu.com/s/12zH-7AssJd3HJql-gjrrlw)
-    (code: fiz9)
+    [Click_here_to_download]()(available soon)
+    (code: )
