@@ -13,7 +13,7 @@ Pytorch 1.8.0, Cuda 11
 @article{kefsrnet,
   title={Propagating Facial Prior Knowledge for Multi-Task Learning in Face Super-Resolution},  
   author={Chenyang Wang, Junjun Jiang, Senior Member, IEEE, Zhiwei Zhong and Xianming Liu},
-  journal={IEEE Trans. Circuits and Systems for Video Technology},<br>
+  journal={IEEE Trans. Circuits and Systems for Video Technology},
   year={2022}
 }
 ```
