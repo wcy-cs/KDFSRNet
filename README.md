@@ -8,12 +8,12 @@ The code will be available soon.
 ## Prerequisites and Installation
 Pytorch 1.9.0, Cuda 11
 
-## Citation
-'''Java
+## Citation 
+``
 article{kefsrnet,
   title={Propagating Facial Prior Knowledge for Multi-Task Learning in Face Super-Resolution},
   author={Chenyang Wang, Junjun Jiang, Senior Member, IEEE, Zhiwei Zhong and Xianming Liu},
   journal={IEEE Trans. Circuits and Systems for Video Technology},
   year={2022}
 }
-'''
+``
