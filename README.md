@@ -10,7 +10,7 @@ Pytorch 1.8.0, Cuda 11
 
 ## Citation 
 ```shell
-@article{kefsrnet,
+@article{kdfsrnet,
   title={Propagating Facial Prior Knowledge for Multi-Task Learning in Face Super-Resolution},  
   author={Chenyang Wang, Junjun Jiang, Senior Member, IEEE, Zhiwei Zhong and Xianming Liu},
   journal={IEEE Trans. Circuits and Systems for Video Technology},
@@ -24,7 +24,7 @@ Pytorch 1.8.0, Cuda 11
 1. Clone this repository:
 
    ```shell
-   git clone [README.md](https://github.com/wcy-cs/KDFSRNet.git)
+   git clone https://github.com/wcy-cs/KDFSRNet.git
    ```
 2. Download our pre-trained model from the links below, unzip the models and place them to `./models`.
 
