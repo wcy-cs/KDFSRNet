@@ -9,7 +9,7 @@ The code will be available soon.
 Pytorch 1.8.0, Cuda 11
 
 ## Citation 
-```Java
+```Python
 @article{kefsrnet,
   title={Propagating Facial Prior Knowledge for Multi-Task Learning in Face Super-Resolution},
   
