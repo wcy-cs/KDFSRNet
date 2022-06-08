@@ -21,24 +21,4 @@ Pytorch 1.8.0, Cuda 11
 ## Test
 
 #### Quick start
-1. Clone this repository:
 
-   ```shell
-   git clone https://github.com/wcy-cs/KDFSRNet.git
-   ```
-2. Download our pre-trained model from the links below, unzip the models and place them to `./models`.
-
-    [Click_here_to_download]()(available soon)
-    (c)
-    
-3. Then run the **following commands** to test the model:
-
-   ```shell
-    python test.py  --dir_data /userhome/data_dir
-   ```
-
-## Result
-1. Download and view our test result.
-
-    [Click_here_to_download]()(available soon)
-    (code: )
