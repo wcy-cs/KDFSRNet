@@ -45,9 +45,6 @@ parser.add_argument('--res_scale', type=float, default=0.2,
 parser.add_argument('--large', action="store_true",
                     help='the input is as large as output or not')
 
-parser.add_argument('--vgg_pretrain', action="store_true",
-                    help='the input is as large as output or not')
-
 # Training specifications
 parser.add_argument('--epochs', type=int, default=400,
                     help='number of epochs to train')
