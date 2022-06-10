@@ -12,7 +12,7 @@ parser.add_argument('--gpu_ids', type=int, default=1)
 parser.add_argument('--seed', type=int, default=1,
                     help='random seed')
 
-parser.add_argument('--dir_data', type=str, default='/userhome/data/CelebA',
+parser.add_argument('--dir_data', type=str, default='./CelebA',
                     help='dataset directory')
 parser.add_argument('--data_train', type=str, default='train',
                     help='train dataset name')
@@ -31,7 +31,7 @@ parser.add_argument('--augment', action='store_true',
                     help='use data augmentation')
 
 # Model specifications
-parser.add_argument('--model', default='AWNET',
+parser.add_argument('--model', default='',
                     help='model name')
 parser.add_argument('--act', type=str, default='relu',
                     help='activation function')
@@ -58,8 +58,6 @@ parser.add_argument('--lr', type=float, default=1e-4,
                     help='learning rate')
 
 # Log specifications
-parser.add_argument('--root', type=str, default='/userhome/experiment')
-
 parser.add_argument('--save_path', type=str, default='./experiment',
                     help='file path to save model')
 parser.add_argument('--load', type=str, default='',
