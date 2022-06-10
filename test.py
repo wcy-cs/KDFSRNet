@@ -20,7 +20,7 @@ student = util.prepare(student)
 print(util.get_parameter_number(student))
 
 
-testdata = dataset.Data(root=os.path.join(args.dir_data, args.data_test), args=args, train=False)
+testdata = dataset.Data(root=args.dir_data, args=args, train=False)
 testset = DataLoader(testdata, batch_size=1, shuffle=False, num_workers=1)
 
 pretrained_dict = torch.load(args.load,map_location='cuda:0')
