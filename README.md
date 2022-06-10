@@ -20,3 +20,8 @@ Pytorch 1.8.0, Cuda 11
 
 ## Results
  [BaiDu](https://pan.baidu.com/s/1bvyPiAnGu_dFI-HfEjn0sw) passward: mji2
+ 
+## Test
+```Python
+python test.py --dir_data data_path --load pretrained_model_path 
+```
