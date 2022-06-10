@@ -56,13 +56,6 @@ class Data(data.Dataset):
             glob.glob(os.path.join(self.imgs_LR_path, '*.png'))
         )
 
-        self.imgs_parsing_path = os.path.join(root, 'global_2')
-
-
-        self.imgs_parsing = sorted(
-            glob.glob(os.path.join(self.imgs_parsing_path, '*.png'))
-        )
-    
         self.transform = transforms.ToTensor()
         self.train = train
 
@@ -70,27 +63,25 @@ class Data(data.Dataset):
 
         img_path_LR = os.path.join(self.imgs_LR_path, self.imgs_LR[item])
         img_path_HR = os.path.join(self.imgs_HR_path, self.imgs_HR[item])
-        img_path_parsing = os.path.join(self.imgs_parsing_path, self.imgs_parsing[item])
-        
+    
         LR = Image.open(img_path_LR)
         HR = Image.open(img_path_HR)
-        parsing = Image.open(img_path_parsing)
-        # img_es_parsing = Image.open(img_es_parsing)
+
         HR = numpy.array(HR)
         LR = numpy.array(LR)
-        parsing = numpy.array(parsing)
+     
         if self.args.augment and self.train:
-            LR, HR, parsing = augment(LR, HR, parsing)
+            LR, HR = augment(LR, HR)
        
         LR = np.ascontiguousarray(LR)
         HR = np.ascontiguousarray(HR)
-        parsing = np.ascontiguousarray(parsing)
+
         HR = ToTensor()(HR)
         LR = ToTensor()(LR)
-        res = ToTensor()(parsing)
+ 
         filename = os.path.basename(img_path_HR)
 
-        return LR, HR, res, filename
+        return LR, HR, filename
 
 
     def __len__(self):
