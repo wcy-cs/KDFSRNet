@@ -9,7 +9,7 @@ Code for paper "Propagating Facial Prior Knowledge for Multi-Task Learning in Fa
 Pytorch 1.8.0, Cuda 10
 
 ## Citation 
-```shell
+```
 @article{kdfsrnet,
   title={Propagating Facial Prior Knowledge for Multi-Task Learning in Face Super-Resolution},  
   author={Chenyang Wang, Junjun Jiang, Senior Member, IEEE, Zhiwei Zhong and Xianming Liu},
