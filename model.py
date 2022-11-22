@@ -174,29 +174,29 @@ class Teacherp(nn.Module):
 
         # define body module
 
-        self.down1 = common.invUpsampler_module(conv, 2, n_feats, act=False)
+        self.down1 = common.invUpsampler(conv, 2, n_feats, act=False)
 
         self.down_stage1 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
-        self.down2 = common.invUpsampler_module(conv, 2, n_feats, act=False)
+        self.down2 = common.invUpsampler(conv, 2, n_feats, act=False)
 
         self.down_stage2 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
-        self.down3 = common.invUpsampler_module(conv, 2, n_feats, act=False)
+        self.down3 = common.invUpsampler(conv, 2, n_feats, act=False)
 
         self.down_stage3 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
-        self.down4 = common.invUpsampler_module(conv, 2, n_feats, act=False)
+        self.down4 = common.invUpsampler(conv, 2, n_feats, act=False)
 
         self.down_stage4 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
         self.bottleneck = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
-        self.up1 = common.Upsampler_module(conv, 2, n_feats, act=False)
+        self.up1 = common.Upsampler(conv, 2, n_feats, act=False)
 
         self.up_stage1 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
-        self.up2 = common.Upsampler_module(conv, 2, n_feats, act=False)
+        self.up2 = common.Upsampler(conv, 2, n_feats, act=False)
 
         self.up_stage2 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
-        self.up3 = common.Upsampler_module(conv, 2, n_feats, act=False)
+        self.up3 = common.Upsampler(conv, 2, n_feats, act=False)
 
         self.up_stage3 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
-        self.up4 = common.Upsampler_module(conv, 2, n_feats, act=False)
+        self.up4 = common.Upsampler(conv, 2, n_feats, act=False)
 
         self.up_stage4 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
         # define tail module
