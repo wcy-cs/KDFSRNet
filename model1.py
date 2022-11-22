@@ -164,3 +164,96 @@ class Student(nn.Module):
 
         return intermediate_results, x
 
+class Teacherp(nn.Module):
+    def __init__(self, args, conv=common.default_conv):
+        super(Teacherp, self).__init__()
+
+        n_resblocks = 8
+        n_feats = 64
+        kernel_size = 3
+        scale = 8
+        act = nn.ReLU(True)
+        self.args = args
+
+
+        # define head module
+
+        m_head = [conv(args.n_colors + 3, n_feats, kernel_size)]
+
+        # define body module
+
+        self.down1 = common.invUpsampler_module(conv, 2, n_feats, act=False)
+
+        self.down_stage1 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
+        self.down2 = common.invUpsampler_module(conv, 2, n_feats, act=False)
+
+        self.down_stage2 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
+        self.down3 = common.invUpsampler_module(conv, 2, n_feats, act=False)
+
+        self.down_stage3 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
+        self.down4 = common.invUpsampler_module(conv, 2, n_feats, act=False)
+
+        self.down_stage4 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
+        self.bottleneck = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
+        self.up1 = common.Upsampler_module(conv, 2, n_feats, act=False)
+
+        self.up_stage1 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
+        self.up2 = common.Upsampler_module(conv, 2, n_feats, act=False)
+
+        self.up_stage2 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
+        self.up3 = common.Upsampler_module(conv, 2, n_feats, act=False)
+
+        self.up_stage3 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
+        self.up4 = common.Upsampler_module(conv, 2, n_feats, act=False)
+
+        self.up_stage4 = nn.Sequential(*[RCAB(n_feat=n_feats, kernel_size=3), RCAB(n_feat=n_feats, kernel_size=3)])
+        # define tail module
+        m_tail = [
+            conv(n_feats, args.n_colors, kernel_size)
+        ]
+        self.head = nn.Sequential(*m_head)
+        self.tail = nn.Sequential(*m_tail)
+
+    def forward(self, x, parsing=None):
+        intp = torch.cat((x, parsing), 1)
+     
+        intermediate_results = []
+        res = self.head(intp)
+       
+        x1 = self.down1(res)
+
+        x = self.down_stage1(x1)
+        intermediate_results.append(x)
+        x2 = self.down2(x)
+        x = self.down_stage2(x2)
+        intermediate_results.append(x)
+        x3 = self.down3(x)
+        x = self.down_stage3(x3)
+        intermediate_results.append(x)
+        x4 = self.down4(x)
+        x = self.down_stage4(x4)
+        intermediate_results.append(x)
+ 
+        x = self.bottleneck(x)
+        intermediate_results.append(x)
+
+        x = self.up1(x)
+        x = self.up_stage1(x)
+        intermediate_results.append(x)
+     
+        x = self.up2(x)
+        x = self.up_stage2(x)
+        intermediate_results.append(x)
+       
+        x = self.up3(x)
+        x = self.up_stage3(x)
+        intermediate_results.append(x)
+ 
+        x = self.up4(x)
+        x = self.up_stage4(x)
+        intermediate_results.append(x)
+
+        x = self.tail(x)
+
+
+        return intermediate_results, x
