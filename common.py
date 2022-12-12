@@ -47,7 +47,18 @@ class Upsampler(nn.Sequential):
 
         super(Upsampler, self).__init__(*m)
 
-
+class Upsampler_module(nn.Module):
+    def __init__(self, conv, scale, n_feats, bn=False, act=False, bias=True):
+        super(Upsampler_module, self).__init__()
+       
+        self.up = nn.PixelShuffle(2)
+        self.conv = nn.Conv2d(in_channels=n_feats, out_channels=n_feats*4, kernel_size=3, stride=1, padding=1)
+    def forward(self, x):
+        # print(x.shape)
+        x = self.conv(x)
+        # print(x.shape)
+        x = self.up(x)
+        return x
 class invPixelShuffle(nn.Module):
 
     def __init__(self, ratio=2):
@@ -86,3 +97,18 @@ class invUpsampler(nn.Sequential):
             raise NotImplementedError
 
         super(invUpsampler, self).__init__(*m)
+        
+class invUpsampler_module(nn.Module):
+    def __init__(self, conv, scale, n_feat, bn=False, act=False, bias=True):
+        super(invUpsampler_module, self).__init__()
+
+        self.up = invPixelShuffle(2)
+        self.conv = nn.Conv2d(in_channels=n_feat*4, out_channels=n_feat, kernel_size=3,
+        stride=1, padding=1) #conv(n_feat*4, n_feat, 3, bias)
+
+    def forward(self, x):
+        x = self.up(x)
+        # print(x.shape)
+        x = self.conv(x)
+        return x
+
