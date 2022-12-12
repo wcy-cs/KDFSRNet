@@ -4,6 +4,10 @@ import numpy as np
 import math
 import cv2
 
+def get_parameter_number(net):
+    total_num = sum(p.numel() for p in net.parameters())
+    trainable_num = sum(p.numel() for p in net.parameters() if p.requires_grad)
+    return {'Total': total_num, 'Trainable': trainable_num}
 
 def prepare(arg):
     if torch.cuda.is_available():
