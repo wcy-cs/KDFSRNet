@@ -2,3 +2,4 @@ Here we provide the pretrained model, and name it dataset_scale.pth
 
 
 Note that FFHQ_x4, FFHQ_x8 FFHQ_x16 is trained on Pytorch 1.9.0 CUDA 11. When use these pretrained model, please choose model1
+Other models are trained on PyTorch 1.6.0.
