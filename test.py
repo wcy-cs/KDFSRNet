@@ -2,31 +2,18 @@ from option import args
 import os
 os.environ['CUDA_VISIBLE_DEVICES'] = args.cuda_name
 import torch
-import torch.optim as optim
-
-import torch.nn as nn
 from data import dataset
 from torch.utils.data import DataLoader
-from torch.utils.tensorboard import SummaryWriter
 import util
 import torchvision
-from model import network
-import numpy as n
+from model import net
 epochs = args.epochs
-student = network.Student(args)
+student = net.Student(args)
 student = util.prepare(student)
-
-
 print(util.get_parameter_number(student))
-
-
 testdata = dataset.Data(root=args.dir_data, args=args, train=False)
 testset = DataLoader(testdata, batch_size=1, shuffle=False, num_workers=1)
-
-pretrained_dict = torch.load(args.load,map_location='cuda:0')
-
-        
-                
+pretrained_dict = torch.load(args.load, map_location='cuda:0')
 student.load_state_dict(pretrained_dict)
 student = util.prepare(student)
 
@@ -45,7 +32,6 @@ with torch.no_grad():
 
     os.makedirs(os.path.join(args.save_path, args.writer_name, save_name), exist_ok=True)
     student.eval()
-    timer_test = util.timer()
     for batch, (lr, hr, filename) in enumerate(testset):
 
         lr, hr = util.prepare(lr), util.prepare(hr)
@@ -58,17 +44,4 @@ with torch.no_grad():
                                          os.path.join(args.save_path, args.writer_name, save_name,
                                                       '{}'.format(str(filename[0])[:-4] + ".png")))
     print("Test psnr: {:.3f}".format(val_psnr / (len(testset))))
-    print('Forward: {:.2f}s\n'.format(timer_test.toc()))
   
-
-
-
-
-
-
-
-
-
-
-
-
