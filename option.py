@@ -52,7 +52,12 @@ parser.add_argument('--batch_size', type=int, default=8,
                     help='input batch size for training')
 parser.add_argument('--test_only', action='store_true',# default=True,
                     help='set this option to test the model')
-
+parser.add_argument('--l1_weight', type=float, default=1,
+                    help='loss function configuration')
+parser.add_argument('--dist_weight', type=float, default=10,
+                    help='loss function configuration')
+parser.add_argument('--soft_weight', type=float, default=0.1,
+                    help='loss function configuration')
 # Optimization specifications
 parser.add_argument('--lr', type=float, default=1e-4,
                     help='learning rate')
@@ -62,6 +67,8 @@ parser.add_argument('--save_path', type=str, default='./experiment',
                     help='file path to save model')
 parser.add_argument('--load', type=str, default='',
                     help='file name to load')
+parser.add_argument('--teacher_load', type=str, default='',
+                    help='the path of the pretrained teacher model')
 
 parser.add_argument("--writer_name", type=str, default="mynet",
                     help="the name of the writer")
