@@ -25,6 +25,16 @@ Pytorch 1.8.0, Cuda 10
 ## Results
  [BaiDu](https://pan.baidu.com/s/1bvyPiAnGu_dFI-HfEjn0sw) passward: mji2
  
+## Train 
+The training phase of our model contains two steps: 1) train the Teacher network with the ground truth; 2) train the Student network with prior knowledge distilated from the Teacher.
+1) Train the Teacher Network.
+```Python
+python train_teacher.py --dir_data data_path  --writer_name Teacher
+```
+2) Train the Student Network.
+```Python
+python train_student.py --dir_data data_path  --writer_name Student --teacher_load pretrained_teacher_path
+```
 ## Test
 ```Python
 python test.py --dir_data data_path --load pretrained_model_path 
